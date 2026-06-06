@@ -1,0 +1,15 @@
+{
+  "name": "harvest-weigh-backend",
+  "version": "1.0.0",
+  "description": "External backend for the mobile Harvest Weigh page. Reads today's pallets for a harvester and writes the weight + harvesting status back to HubSpot.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "sync-frontend": "node scripts/sync-frontend.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {}
+}

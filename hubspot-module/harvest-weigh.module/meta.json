@@ -1,0 +1,10 @@
+{
+  "label": "Harvest Weigh",
+  "description": "Mobile pallet-weigh page for harvest operators — pick a harvester, step through today's pallets, enter weights.",
+  "global": false,
+  "host_template_types": ["PAGE"],
+  "is_available_for_new_content": true,
+  "smart_type": "NOT_SMART",
+  "categories": ["functionality"],
+  "icon": ""
+}

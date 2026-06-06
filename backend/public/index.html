@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1a4d2e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Harvest Weigh</title>
+  <link rel="stylesheet" href="/app.css">
+  <style> html, body { margin: 0; background: #f4f6f8; } </style>
+</head>
+<body>
+  <!-- Prototype page served by the same Vercel deployment as the API (same-origin,
+       no CORS). Brand comes from ?brand=CT|SA|JT|AV. Optional ?key= if the backend
+       has an API_KEY set. -->
+  <div class="harvest-weigh-root" data-logo=""></div>
+
+  <script>
+    (function () {
+      var p = new URLSearchParams(location.search);
+      var el = document.querySelector('.harvest-weigh-root');
+      el.setAttribute('data-brand', (p.get('brand') || 'CT').toUpperCase());
+      el.setAttribute('data-backend', location.origin);   // same-origin API
+      el.setAttribute('data-api-key', p.get('key') || '');
+      if (p.get('logo')) el.setAttribute('data-logo', p.get('logo'));
+    })();
+  </script>
+  <script src="/app.js"></script>
+</body>
+</html>

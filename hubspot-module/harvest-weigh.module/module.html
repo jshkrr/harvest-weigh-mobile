@@ -1,0 +1,7 @@
+{# Harvest Weigh — root element. module.css and module.js are auto-included by   #}
+{# HubSpot. All config comes from the module fields (set per page in the editor). #}
+<div class="harvest-weigh-root"
+     data-brand="{{ module.brand }}"
+     data-backend="{{ module.backend_url }}"
+     data-api-key="{{ module.api_key }}"
+     data-logo="{% if module.logo.src %}{{ module.logo.src }}{% endif %}"></div>

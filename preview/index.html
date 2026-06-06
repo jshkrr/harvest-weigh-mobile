@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Harvest Weigh — preview</title>
+  <!-- Reuses the REAL module files, so what you see here is what ships to HubSpot -->
+  <link rel="stylesheet" href="../hubspot-module/harvest-weigh.module/module.css">
+  <style>
+    html, body { margin: 0; background: #dfe4ea; }
+    /* phone frame, just for the preview */
+    .phone { max-width: 430px; margin: 0 auto; min-height: 100vh; background: #f4f6f8; box-shadow: 0 0 40px rgba(0,0,0,.15); }
+    .switcher { max-width: 430px; margin: 0 auto; padding: 10px; display: flex; gap: 8px; justify-content: center; font: 13px -apple-system, sans-serif; }
+    .switcher a { color: #143d24; }
+  </style>
+</head>
+<body>
+  <div class="switcher">
+    Brand: <a href="?brand=CT">Coolabah</a> · <a href="?brand=SA">StrathAyr</a> ·
+    <a href="?brand=JT">Jimboomba</a> · <a href="?brand=AV">Allenview</a>
+  </div>
+  <div class="phone">
+    <!-- data-backend points at the local backend running in MOCK mode -->
+    <div class="harvest-weigh-root"
+         data-backend="http://localhost:3000"
+         data-api-key=""
+         data-logo=""></div>
+  </div>
+
+  <script>
+    // pick brand from ?brand= so the preview can flip farms (the HubSpot module
+    // sets data-brand from a field instead)
+    var b = (new URLSearchParams(location.search).get('brand') || 'CT').toUpperCase();
+    document.querySelector('.harvest-weigh-root').setAttribute('data-brand', b);
+  </script>
+  <script src="../hubspot-module/harvest-weigh.module/module.js"></script>
+</body>
+</html>

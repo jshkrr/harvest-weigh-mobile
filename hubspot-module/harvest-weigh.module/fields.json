@@ -1,0 +1,50 @@
+[
+  {
+    "name": "brand",
+    "label": "Brand / farm",
+    "required": true,
+    "locked": false,
+    "type": "choice",
+    "display": "select",
+    "choices": [
+      ["CT", "Coolabah Turf"],
+      ["SA", "StrathAyr"],
+      ["JT", "Jimboomba Turf"],
+      ["AV", "Allenview Turf"]
+    ],
+    "default": "CT"
+  },
+  {
+    "name": "backend_url",
+    "label": "Backend URL",
+    "help_text": "Base URL of the Harvest Weigh backend, no trailing slash. e.g. https://harvest-weigh.yourdomain.com",
+    "required": true,
+    "locked": false,
+    "type": "text",
+    "default": ""
+  },
+  {
+    "name": "api_key",
+    "label": "API key (optional)",
+    "help_text": "Must match the backend API_KEY. Leave blank if the backend has none set.",
+    "required": false,
+    "locked": false,
+    "type": "text",
+    "default": ""
+  },
+  {
+    "name": "logo",
+    "label": "Brand logo",
+    "help_text": "Optional. Upload the farm's logo; falls back to a brand wordmark if empty.",
+    "required": false,
+    "locked": false,
+    "responsive": false,
+    "resizable": false,
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "lazy"
+    }
+  }
+]
