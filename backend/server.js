@@ -32,6 +32,7 @@ const path = require('path');
 const MOCK = process.env.MOCK === '1';
 const core = MOCK ? require('./lib/mock') : require('./lib/core');
 const { BRAND_META, HARVESTERS } = require('./lib/config');
+const { buildManifest } = require('./lib/manifest');
 
 const PORT = Number(process.env.PORT) || 3000;
 const API_KEY = process.env.API_KEY || '';
@@ -113,6 +114,13 @@ const server = http.createServer(async (req, res) => {
   // Lightweight metadata for the front-end (brand names/colours, harvester list)
   if (url.pathname === '/api/meta') {
     return send(res, 200, { brands: BRAND_META, harvesters: HARVESTERS }, origin);
+  }
+
+  // Per-brand PWA manifest (mirrors api/manifest.js for local testing)
+  if (url.pathname === '/api/manifest') {
+    const manifest = buildManifest(url.searchParams.get('brand'), url.searchParams.get('key'));
+    res.writeHead(200, { 'Content-Type': 'application/manifest+json; charset=utf-8', ...corsHeaders(origin) });
+    return res.end(JSON.stringify(manifest));
   }
 
   if (!keyOk(req, url)) {

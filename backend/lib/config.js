@@ -15,10 +15,10 @@ const BRANDS = ['CT', 'SA', 'JT', 'AV'];
 // Brand display: name, primary colour (from generateChecklist BRAND_COLORS),
 // and slab size in m² per slab (CT/SA = 0.5, JT/AV = 0.76 — confirmed by Josh).
 const BRAND_META = {
-  CT: { name: 'Coolabah Turf',  color: '#1a4d2e', slab: 0.5  },
-  SA: { name: 'StrathAyr',      color: '#003366', slab: 0.5  },
-  JT: { name: 'Jimboomba Turf', color: '#2d5a1b', slab: 0.76 },
-  AV: { name: 'Allenview Turf', color: '#4a7c2f', slab: 0.76 },
+  CT: { name: 'Coolabah Turf',  short: 'Coolabah',  color: '#1a4d2e', slab: 0.5  },
+  SA: { name: 'StrathAyr',      short: 'StrathAyr', color: '#003366', slab: 0.5  },
+  JT: { name: 'Jimboomba Turf', short: 'Jimboomba', color: '#2d5a1b', slab: 0.76 },
+  AV: { name: 'Allenview Turf', short: 'Allenview', color: '#4a7c2f', slab: 0.76 },
 };
 
 // Harvester machines available per brand (drives the on-load picker).

@@ -6,7 +6,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "node server.js",
-    "sync-frontend": "node scripts/sync-frontend.js"
+    "sync-frontend": "node scripts/sync-frontend.js",
+    "gen-icons": "node scripts/gen-icons.js"
   },
   "engines": {
     "node": ">=18"

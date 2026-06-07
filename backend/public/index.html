@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#1a4d2e">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Harvest Weigh</title>
@@ -19,11 +20,33 @@
   <script>
     (function () {
       var p = new URLSearchParams(location.search);
+      var code = (p.get('brand') || 'CT').toUpperCase();
+      var lc = code.toLowerCase();
       var el = document.querySelector('.harvest-weigh-root');
-      el.setAttribute('data-brand', (p.get('brand') || 'CT').toUpperCase());
+      el.setAttribute('data-brand', code);
       el.setAttribute('data-backend', location.origin);   // same-origin API
       el.setAttribute('data-api-key', p.get('key') || '');
       if (p.get('logo')) el.setAttribute('data-logo', p.get('logo'));
+
+      // ── PWA: per-brand manifest, icons, theme colour, install title ──
+      var THEME = { CT: '#1a4d2e', SA: '#003366', JT: '#2d5a1b', AV: '#4a7c2f' };
+      var TITLE = { CT: 'Coolabah', SA: 'StrathAyr', JT: 'Jimboomba', AV: 'Allenview' };
+      function head(tag, attrs) {
+        var e = document.createElement(tag);
+        for (var k in attrs) e.setAttribute(k, attrs[k]);
+        document.head.appendChild(e);
+        return e;
+      }
+      // pass any ?key= into the manifest so an installed app's start_url stays authorised
+      var key = p.get('key');
+      var manifestHref = '/api/manifest?brand=' + code + (key ? '&key=' + encodeURIComponent(key) : '');
+      head('link', { rel: 'manifest', href: manifestHref });
+      head('link', { rel: 'apple-touch-icon', href: '/icons/' + lc + '-180.png' });
+      head('link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/icons/' + lc + '-192.png' });
+      head('meta', { name: 'apple-mobile-web-app-title', content: TITLE[code] || 'Harvest' });
+      head('meta', { name: 'application-name', content: TITLE[code] || 'Harvest' });
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute('content', THEME[code] || THEME.CT);
     })();
   </script>
   <script src="/app.js"></script>
